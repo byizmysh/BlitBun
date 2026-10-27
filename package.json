@@ -1,0 +1,15 @@
+{
+  "name": "blitbun",
+  "version": "1.14.3",
+  "private": true,
+  "description": "PC-to-Switch 2 streaming \u00b7 video, audio and optional controller forwarding",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "node tools/module.cjs check",
+    "pack": "node tools/module.cjs pack",
+    "release": "node tools/module.cjs release"
+  },
+  "license": "GPL-2.0-or-later"
+}
