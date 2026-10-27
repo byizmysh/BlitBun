@@ -19,3 +19,11 @@ A new Switch session is required to validate the new loaded module version and i
 - Targeted platform/module and exclusive-stream ownership checks passed (30 cases).
 - The private isolated Linux fixture masked the other media module: BlitBun captured valid HD and Full HD frames across a live resolution change.
 - A new physical Switch/gameplay/FPS validation was not performed as part of this packaging change.
+
+## Public release preparation — 2026-10-27
+
+- The real control page was opened in its explicit local-preview mode without a console. Full HD, RAM dictionaries and additional-compression Off were selected through the page controls. This verifies controls, not physical streaming performance.
+- The BlitBun tile screenshot was rendered locally from the platform's actual console shaders and the module icon/catalog.
+- Installation into a disposable base-platform copy passed without an installed VacooTube module. Module/SDK checks and public streaming-component resolution passed. System packages, desktop shortcuts and console sessions were not changed.
+- All server/console implementation files remain byte-identical to the prepared 1.14.3 source; only documentation, screenshots and repository metadata changed.
+- Inherited-source review markers remain in THIRD_PARTY.json; this packaging check is not a legal clearance.

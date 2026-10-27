@@ -1,7 +1,7 @@
 # BlitBun 1.14.3
 
-Local GitHub preparation candidate; not published. Based on the committed
-1.14.3 implementation. Uncommitted lab changes are excluded.
+First public BlitBun release, based on the committed 1.14.3 implementation.
+Uncommitted lab changes are excluded.
 
 Original module-owned capture, BC1 encoding, block/dictionary compression,
 persistent transport, live render profiles and optional controller forwarding

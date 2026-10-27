@@ -10,6 +10,6 @@ This repository is the canonical source for the separate BlitBun project. The IZ
 
 A clean source tree is required for release creation. Do not edit active `.versions/` or prepared runtime source as the canonical code. Do not commit private data, caches, downloaded runtimes or credentials. Generated .izm and tar archives belong to release assets, not Git source history.
 
-No GitHub remote or automatic publication is configured. The initial local author uses the technical placeholder `IZMYSH <local@iz2s.invalid>`; choose your real/public no-reply identity before future public commits. Preserve component license notices and inherited review markers.
+The public repository is https://github.com/byizmysh/BlitBun. Publishing is an explicit maintainer action; packaging does not upload automatically. The initial local author uses the technical placeholder `IZMYSH <local@iz2s.invalid>`; choose your real/public no-reply identity before future public commits. Preserve component license notices and inherited review markers.
 
 [Back to README](README.md).

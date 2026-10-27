@@ -1,12 +1,29 @@
 # BlitBun
 
-<img src="assets/icon-master.png" width="160" alt="BlitBun — a flying golden bread loaf">
+<p align="center"><img src="assets/icon-master.png" width="120" alt="BlitBun — a flying golden bread loaf"></p>
 
 **Fresh frames, delivered.**
 
-BlitBun is the PC-to-Switch 2 streaming project for **IZ2S Platform**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game. It was previously displayed as `???` / IZlink.
+BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform)**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game. It was previously displayed as `???` / IZlink.
 
 **IZ2S Platform and its IZlauncher shell are required. This repository is a module, not a replacement console engine, standalone Switch exploit or game emulator.**
+
+## A quick look
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <a href="docs/images/controls.jpg"><img src="docs/images/controls-preview.jpg" width="420" alt="BlitBun PC controls for source selection, resolution, compression and rendering"></a><br>
+      <sub><strong>PC controls</strong><br>Select a source and adjust resolution, compression and rendering. Click for the full panel.</sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="docs/images/izlauncher.jpg"><img src="docs/images/izlauncher.jpg" width="420" alt="BlitBun selected in the IZlauncher console menu"></a><br>
+      <sub><strong>Ready in IZlauncher</strong><br>Load the module and open its console tile to start the streaming workflow.</sub>
+    </td>
+  </tr>
+</table>
+
+<p align="center"><sub>Actual local panel preview and console shaders rendered on the host. No console session or measured stream performance is shown.</sub></p>
 
 ## Original streaming implementation
 
@@ -50,7 +67,7 @@ ARM64 platform support does not make an x64-only game run on ARM. The experiment
 
 ## Install into IZ2S
 
-Clone/download this repository or extract its source release. Open a terminal in this folder and set the actual platform directory:
+Install [IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform/releases/latest) first, then download the BlitBun installation archive from [Releases](https://github.com/byizmysh/BlitBun/releases/latest) and extract it. A Git checkout works too. Open a terminal in this folder and set the actual platform directory:
 
 ```sh
 IZ2S="/absolute/path/to/iz2s-platform"
@@ -64,6 +81,8 @@ For an intentional update, stop the relevant console session first and use:
 ```
 
 The installer validates the platform/module, installs into `modules/BlitBun/`, and creates its `.izm`. Existing installations require `--replace`; the previous module is moved into the platform's private `data/module-backups/`. Existing module preferences/runtime are preserved. The installer does not start a console session or modify an engine.
+
+The archive contains the module source, console contribution and installer. System capture/audio tools listed above are separate host requirements; `install.sh` installs the module without changing system packages.
 
 The module ID is **`blitbun`**, its installation directory is **`modules/BlitBun/`**, and its package is **`blitbun.izm`**. The installer can migrate the former `pc-screen` module with `--replace`, preserving private settings/runtime and a backup. BlitBun does not require VacooTube.
 
