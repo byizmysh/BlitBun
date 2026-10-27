@@ -90,6 +90,8 @@ In IZ2S App library, select/load BlitBun, start a fresh compatible session, then
 
 Manual installation is also possible: copy this complete module source tree or its generated `blitbun.izm` into the matching platform folder. Keep your old module data separately and repack changed sources. The scripted installer is preferable because it keeps a backup.
 
+The PC panel uses a separate **320 × 180 source preview, refreshed at up to 5 FPS**. Its small size and refresh rate do not change the console stream resolution or frame-rate setting. Source selection and stream status sit beside the settings; there is no Doom launch action in the PC panel. Native-window previews are best-effort thumbnails of available capture frames.
+
 ## Capture modes
 
 | Mode | Use it for | Important detail |

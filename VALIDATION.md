@@ -27,3 +27,7 @@ A new Switch session is required to validate the new loaded module version and i
 - Installation into a disposable base-platform copy passed without an installed VacooTube module. Module/SDK checks and public streaming-component resolution passed. System packages, desktop shortcuts and console sessions were not changed.
 - All server/console implementation files remain byte-identical to the prepared 1.14.3 source; only documentation, screenshots and repository metadata changed.
 - Inherited-source review markers remain in THIRD_PARTY.json; this packaging check is not a legal clearance.
+
+## Compact PC panel — 1.14.4
+
+Targeted checks cover preview dimensions/rate limiting, aspect ratio, BGRA conversion, missing frames and preservation of the original capture bytes. Browser UI checks cover settings changes and desktop/mobile layouts. Module validation and a clean local installation are checked separately. No new physical-console throughput or FPS qualification is claimed.

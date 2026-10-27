@@ -1,3 +1,11 @@
+# BlitBun 1.14.4
+
+- Remove the Doom launch action from the PC panel.
+- Replace the large monitor with a fixed 320×180 preview at up to 5 FPS, separate from full-resolution encoding.
+- Add bounded native-window thumbnails without altering captured frames.
+- Arrange source controls and status beside a wider settings grid, with responsive small-screen layouts.
+- Keep the console receiver, video codecs, audio and transport unchanged.
+
 # BlitBun 1.14.3
 
 First public BlitBun release, based on the committed 1.14.3 implementation.

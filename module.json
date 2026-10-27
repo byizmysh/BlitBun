@@ -1,9 +1,9 @@
 {
   "format": "izlauncher.module",
-  "version": "1.14.3",
+  "version": "1.14.4",
   "id": "blitbun",
   "name": "BlitBun",
-  "moduleVersion": "1.14.3",
+  "moduleVersion": "1.14.4",
   "switch": {
     "entry": "switch/app.json",
     "files": [
@@ -72,7 +72,8 @@
       "server/lib/route-gate.cjs",
       "server/standalone-service.cjs",
       "server/lib/composite-source.cjs",
-      "server/lib/remote/composite-surface.py"
+      "server/lib/remote/composite-surface.py",
+      "server/lib/stream-preview.cjs"
     ],
     "systemDependencies": [
       {
@@ -166,6 +167,6 @@
   "provides": {
     "stream-host": "create"
   },
-  "description": "PC-to-Switch 2 streaming \u00b7 video, audio and optional controller forwarding",
+  "description": "PC-to-Switch 2 streaming · video, audio and optional controller forwarding",
   "installationDirectory": "BlitBun"
 }
