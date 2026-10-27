@@ -23,7 +23,6 @@ BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://gi
   </tr>
 </table>
 
-<p align="center"><sub>Actual local panel preview and console shaders rendered on the host. No console session or measured stream performance is shown.</sub></p>
 
 ## Original streaming implementation
 
