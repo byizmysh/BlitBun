@@ -1,5 +1,9 @@
 # BlitBun operations and troubleshooting
 
+## Required platform
+
+Install [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) and complete its [console setup](https://github.com/byizmysh/IZ2S-Platform#installation) before installing BlitBun. Keep IZ2S Platform running on the PC and the IZlauncher console session connected while streaming.
+
 ## First useful test
 
 Connect IZ2S/IZlauncher, load the module, open BlitBun on Switch and select one moving application window from its PC controls. Begin at HD and keep other settings fixed. Check video, supported source audio, menu return and only then a resolution/route transition. A host-only benchmark is not a physical-console FPS measurement.

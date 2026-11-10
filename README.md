@@ -6,7 +6,9 @@
 
 BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform)**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game.
 
-**IZ2S Platform and its IZlauncher shell are required. This repository is a module, not a replacement console engine, standalone Switch exploit or game emulator.**
+> **Requires [IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform) and IZlauncher.** Install [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) first and follow its [setup guide](https://github.com/byizmysh/IZ2S-Platform#installation). Keep the platform running on the PC and the console session connected during streaming.
+
+BlitBun is an optional platform module, downloaded separately from [BlitBun Releases](https://github.com/byizmysh/BlitBun/releases/latest). It is not bundled with IZ2S Platform 0.22 and does not replace its console engine or bootstrap.
 
 ## A quick look
 
