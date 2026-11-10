@@ -31,3 +31,10 @@ A new Switch session is required to validate the new loaded module version and i
 ## Compact PC panel — 1.14.4
 
 Targeted checks cover preview dimensions/rate limiting, aspect ratio, BGRA conversion, missing frames and preservation of the original capture bytes. Browser UI checks cover settings changes and desktop/mobile layouts. Module validation and a clean local installation are checked separately. No new physical-console throughput or FPS qualification is claimed.
+
+## IZ2S Platform 0.22 package update
+
+- Rebuilt the module-owned console shaders/font with the published 0.22 SDK.
+- Source/descriptor checks and installation into a clean isolated platform copy passed.
+- 5 module tests passed, including bounded adaptive PCM playback under modeled 35 ms release and 65 ms append delays.
+- These are local software/package checks; no new physical-console session or FPS/audio quality qualification is claimed.

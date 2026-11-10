@@ -3,22 +3,21 @@
   "abi": 1,
   "id": "blitbun",
   "name": "BlitBun",
-  "version": "1.14.4",
+  "version": "1.15.3",
   "description": "PC-to-Switch 2 streaming · video, audio and optional controller forwarding",
   "icon": "icon.webp",
-  "builtin": "blitbun",
-  "shellContribution": {
-    "files": [
-      "modules/tiny-calc.glsl",
-      "modules/pc-screen.glsl",
-      "modules/pc-screen-input.glsl",
-      "modules/pc-screen-draw.glsl"
-    ],
-    "defines": [
-      "IZ_STREAM",
-      "IZ_STREAM_PRIVATE"
-    ],
-    "scene": 3,
-    "memoryBytes": 2097152
-  }
+  "initialState": "assets/state.bin",
+  "data": "assets/font.bin",
+  "transition": "none",
+  "hostRuntime": "module:blitbun/standalone",
+  "shaders": {
+    "vertex": "app.vert.spv.deflate",
+    "fragment": "app.frag.spv.deflate",
+    "compute": "app.comp.spv.deflate"
+  },
+  "memory": {
+    "bytes": 2097152,
+    "initial": "assets/video.bin"
+  },
+  "shaderEncoding": "deflate"
 }

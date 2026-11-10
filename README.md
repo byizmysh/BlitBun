@@ -6,9 +6,15 @@
 
 BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform)**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game.
 
-> **Requires [IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform) and IZlauncher.** Install [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) first and follow its [setup guide](https://github.com/byizmysh/IZ2S-Platform#installation). Keep the platform running on the PC and the console session connected during streaming.
+> **Requires [IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform) 0.22 and a connected launcher session.** Install [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) first and follow its [setup guide](https://github.com/byizmysh/IZ2S-Platform#installation). Keep the platform running on the PC and the console session connected during streaming.
 
 BlitBun is an optional platform module, downloaded separately from [BlitBun Releases](https://github.com/byizmysh/BlitBun/releases/latest). It is not bundled with IZ2S Platform 0.22 and does not replace its console engine or bootstrap.
+
+## Updated for IZ2S Platform 0.22
+
+This package owns its console shaders, font and menu instead of merging them into a particular launcher skin. Install it in **RAM or on SD** and open it from IZlauncher or IZPSlauncher. Streaming still runs on the PC and needs an active connection.
+
+Audio buffering adapts to measured transfer latency while keeping the queue bounded. Video acknowledgements also carry input and route information, reducing competing polling during playback. Double-tap **Minus** for the module menu; double-tap **R3** to return to the launcher. The performance overlay is off by default.
 
 ## A quick look
 
@@ -57,7 +63,7 @@ Video goes through a dedicated path rather than through the browser panel for an
 
 ## Requirements
 
-- Linux x64 or ARM64, IZ2S Platform 0.16.0-rc.2 or newer, platform API 1, console ABI 1 and IZlauncher.
+- Linux x64 or ARM64, [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0), platform API 1 and console ABI 1.
 - A working console session using the platform's supported engine/bootstrap workflow. Installing this module does not type or replace a bootstrap.
 - Python 3, FFmpeg, X11/libX11/libXRes for the direct-window capture path, and a browser with WebGL2 for browser capture.
 - PipeWire/PulseAudio compatibility, `pactl` and `parec` for application audio.
@@ -154,6 +160,7 @@ A Pro Controller/Joy-Con stays paired with Switch. Optional forwarding creates a
 | `dist/` | Built source release archive and checksums; ignored by Git |
 
 ```sh
+node tools/build-switch.cjs "$IZ2S"
 node tools/module.cjs check --platform "$IZ2S"
 node tools/module.cjs pack --platform "$IZ2S"
 # Commit finished source changes before building a release:
