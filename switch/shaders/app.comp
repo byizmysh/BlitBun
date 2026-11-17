@@ -7,10 +7,11 @@ layout(local_size_x=1) in;
 #include "menu-input.glsl"
 #include "pc-screen.glsl"
 #include "pc-screen-input.glsl"
+#include "standalone.glsl"
 void main(){
- izNormalizePad();
- if(c.atlas[CB+7u]!=CMAGIC){c.atlas[CB+7u]=CMAGIC;c.atlas[CB+1u]=2u;c.atlas[SB+40u]=1u;}
- uint pressed=hbPressed();
- streamLatch();streamInput(pressed);
- if(c.atlas[CB+1u]==0u)c.reserved.z=1u;
+    izNormalizePad();
+    if(c.atlas[CB+7u]!=CMAGIC){c.atlas[CB+7u]=CMAGIC;c.atlas[CB+1u]=2u;c.atlas[SB+40u]=1u;}
+    uint pressed=hbPressed();
+    streamLatch();
+    mediaInput(pressed);
 }

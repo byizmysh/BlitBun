@@ -1,32 +1,22 @@
-# BlitBun 1.15.3 — IZ2S Platform 0.22
+# BlitBun 1.15.8
 
-- Requires [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) and a connected console session.
-- Self-contained ABI-1 GPU application with module-owned shaders, font and menu; RAM and SD installation use the same host runtime.
-- Adaptive bounded audio buffering accounts for actual refill latency and reports missed deadlines.
-- Video acknowledgements carry input and route telemetry, removing redundant steady-stream polling and timer-driven display resets.
-- Double R3 returns to the launcher; double Minus opens the module menu. Performance overlay is off by default.
-- Source installation package and portable IZM are included.
+This release pairs the PC module with a ready-to-install Switch 2 client.
 
-# BlitBun 1.14.4
+- Smaller overlay controls and a dedicated EXIT action.
+- The Switch executable is included in the PC package as an .iza file.
+- The PC module and the Switch executable can also be installed separately.
 
-- Remove the Doom launch action from the PC panel.
-- Replace the large monitor with a fixed 320×180 preview at up to 5 FPS, separate from full-resolution encoding.
-- Add bounded native-window thumbnails without altering captured frames.
-- Arrange source controls and status beside a wider settings grid, with responsive small-screen layouts.
-- Keep the console receiver, video codecs, audio and transport unchanged.
+## Install on the PC
 
-# BlitBun 1.14.3
+Extract the source installer archive. Open a terminal in the extracted folder and run:
 
-First public BlitBun release, based on the committed 1.14.3 implementation.
-Uncommitted lab changes are excluded.
+```sh
+./install.sh --platform "/path/to/iz2s-platform"
+```
 
-Original module-owned capture, BC1 encoding, block/dictionary compression,
-persistent transport, live render profiles and optional controller forwarding
-are retained. No renderer code was changed for this packaging operation.
+Replace the path with your IZ2S Platform installation folder. Keep IZ2S Platform running on the PC while using BlitBun on Switch.
 
-Requires IZ2S Platform/IZlauncher. VacooTube is not required. No game,
-experimental GPU-test app or private user profile is bundled.
+## Install on Switch 2
 
-See SUPPORT.md, VALIDATION.md, LICENSE and THIRD_PARTY.json.
-
-- License independently authored IZMYSH code under GPL-2.0-or-later; retain explicit component terms and prior grants.
+1. **Through IZ2S:** Connect your Switch 2 to IZ2S Platform on the PC. Open **App library → Add app** and select `blitbun-1.15.8.iza`. Open **Add App** in IZ2S on the Switch to receive and install the file.
+2. **Copy to the SD card:** Open the card on your PC. Create `iz2s/modules/blitbun/` at the root if needed. Copy `blitbun-1.15.8.iza` there and rename it to `launcher.iza`. The final path is `SD:/iz2s/modules/blitbun/launcher.iza`. Reinsert the card and open BlitBun from the IZ2S menu.

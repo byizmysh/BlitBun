@@ -4,17 +4,9 @@
 
 **Fresh frames, delivered.**
 
-BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform)**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game.
+BlitBun is the PC-to-Switch 2 streaming project for **[IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform)**. It sends a selected application's video and audio to the console and can forward a controller connected natively to Switch back to a PC game. It was previously displayed as `???` / IZlink.
 
-> **Requires [IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform) 0.22 and a connected launcher session.** Install [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0) first and follow its [setup guide](https://github.com/byizmysh/IZ2S-Platform#installation). Keep the platform running on the PC and the console session connected during streaming.
-
-BlitBun is an optional platform module, downloaded separately from [BlitBun Releases](https://github.com/byizmysh/BlitBun/releases/latest). It is not bundled with IZ2S Platform 0.22 and does not replace its console engine or bootstrap.
-
-## Updated for IZ2S Platform 0.22
-
-This package owns its console shaders, font and menu instead of merging them into a particular launcher skin. Install it in **RAM or on SD** and open it from IZlauncher or IZPSlauncher. Streaming still runs on the PC and needs an active connection.
-
-Audio buffering adapts to measured transfer latency while keeping the queue bounded. Video acknowledgements also carry input and route information, reducing competing polling during playback. Double-tap **Minus** for the module menu; double-tap **R3** to return to the launcher. The performance overlay is off by default.
+**IZ2S Platform 0.25 and the IZ2S console menu are required. This repository is a module, not a replacement console engine, standalone Switch exploit or game emulator.**
 
 ## A quick look
 
@@ -31,6 +23,7 @@ Audio buffering adapts to measured transfer latency while keeping the queue boun
   </tr>
 </table>
 
+<p align="center"><sub>Actual local panel preview and console shaders rendered on the host. No console session or measured stream performance is shown.</sub></p>
 
 ## Original streaming implementation
 
@@ -42,13 +35,13 @@ The implemented pipeline is:
 2. Convert fresh frames to BC1 texture blocks, using the WebAssembly/SIMD encoder or optional native acceleration where available. The other declared RGB565/indexed paths remain available for their supported sizes.
 3. Compare encoded blocks with the acknowledged reference, omit unchanged regions and package changes for transmission. Optional additional DEFLATE compression trades bandwidth for processing time; stored DEFLATE blocks keep the same encoded image with less compression work.
 4. Send bounded packets through a dedicated connection, validate acknowledgements and keep the current frame plus bounded preparation work. The browser control panel is not a video relay. Route/source/resolution changes invalidate old work before a fresh frame can become visible.
-5. Reconstruct and render the image through the IZlauncher console contribution, with mapped/buffered paths and RAM-dictionary decoding options. Application audio has its own capture/queue path; controller forwarding is optional and separate.
+5. Reconstruct and render the image through the module-owned GPU receiver, with mapped/buffered paths and RAM-dictionary decoding options. Application audio has its own capture/queue path; controller forwarding is optional and separate.
 
 The custom engineering is in how these pieces are encoded, scheduled, transferred and reconstructed for this console environment. It is not a claim to have invented BC1 or DEFLATE, and it does not guarantee a particular FPS or latency on every machine. See the rendering/compression controls below for the actual tradeoffs.
 
 ## What runs where?
 
-The application/game and capture/encoding run on the Linux PC. IZ2S provides the established qualified console session and shared services. BlitBun owns capture, compression, audio, stream listeners and its console contribution. The Switch presents the image/audio and supplies supported input.
+The application/game and capture/encoding run on the Linux PC. IZ2S provides the established qualified console session and shared services. BlitBun owns capture, compression, audio, stream listeners and its standalone GPU receiver. The Switch presents the image/audio and supplies supported input.
 
 ```mermaid
 flowchart LR
@@ -63,7 +56,7 @@ Video goes through a dedicated path rather than through the browser panel for an
 
 ## Requirements
 
-- Linux x64 or ARM64, [IZ2S Platform 0.22](https://github.com/byizmysh/IZ2S-Platform/releases/tag/v0.22.0), platform API 1 and console ABI 1.
+- Linux x64 or ARM64, IZ2S Platform 0.25 or newer with the IZ2S console menu.
 - A working console session using the platform's supported engine/bootstrap workflow. Installing this module does not type or replace a bootstrap.
 - Python 3, FFmpeg, X11/libX11/libXRes for the direct-window capture path, and a browser with WebGL2 for browser capture.
 - PipeWire/PulseAudio compatibility, `pactl` and `parec` for application audio.
@@ -81,21 +74,26 @@ IZ2S="/absolute/path/to/iz2s-platform"
 ./install.sh --platform "$IZ2S"
 ```
 
+## Install on Switch 2
+
+1. **Through IZ2S:** Connect your Switch 2 to IZ2S Platform on the PC. Open **App library → Add app** and select `blitbun-1.15.8.iza`. Open **Add App** in IZ2S on the Switch to receive and install the file.
+2. **Copy to the SD card:** Open the card on your PC. Create `iz2s/modules/blitbun/` at the root if needed. Copy `blitbun-1.15.8.iza` there and rename it to `launcher.iza`. The final path is `SD:/iz2s/modules/blitbun/launcher.iza`. Reinsert the card and open BlitBun from the IZ2S menu.
+
 For an intentional update, stop the relevant console session first and use:
 
 ```sh
 ./install.sh --platform "$IZ2S" --replace
 ```
 
-The installer validates the platform/module, installs into `modules/BlitBun/`, and creates its `.izm`. Existing installations require `--replace`; the previous module is moved into the platform's private `data/module-backups/`. Existing module preferences/runtime are preserved. The installer does not start a console session or modify an engine.
+The installer validates the platform/module, installs into `modules/BlitBun/`, and prepares the PC component. Existing installations require `--replace`; the previous module is moved into the platform's private `data/module-backups/`. Existing module preferences/runtime are preserved. The installer does not start a console session or modify an engine.
 
 The archive contains the module source, console contribution and installer. System capture/audio tools listed above are separate host requirements; `install.sh` installs the module without changing system packages.
 
-The module ID is **`blitbun`**, its installation directory is **`modules/BlitBun/`**, and its package is **`blitbun.izm`**. The installer can migrate the former `pc-screen` module with `--replace`, preserving private settings/runtime and a backup. BlitBun does not require VacooTube.
+The module ID is **`blitbun`**, its installation directory is **`modules/BlitBun/`**. The installer can migrate the former `pc-screen` module with `--replace`, preserving private settings/runtime and a backup. BlitBun does not require VacooTube.
 
 In IZ2S App library, select/load BlitBun, start a fresh compatible session, then open its tile on Switch. Use the adjacent PC controls tab to choose the source. Installing files and loading/running the console module are separate actions.
 
-Manual installation is also possible: copy this complete module source tree or its generated `blitbun.izm` into the matching platform folder. Keep your old module data separately and repack changed sources. The scripted installer is preferable because it keeps a backup.
+Manual installation is also possible: copy this complete module source tree into the matching platform folder. Keep your old module data separately and repack changed sources. The scripted installer is preferable because it keeps a backup.
 
 The PC panel uses a separate **320 × 180 source preview, refreshed at up to 5 FPS**. Its small size and refresh rate do not change the console stream resolution or frame-rate setting. Source selection and stream status sit beside the settings; there is no Doom launch action in the PC panel. Native-window previews are best-effort thumbnails of available capture frames.
 
@@ -144,7 +142,7 @@ Video can reconnect while the main native session is still valid. The unchanged 
 
 Enable **Share sound** to send supported application audio. Capture is scoped to the selected application/owned source; there is no implicit microphone fallback. Choose the console's active output, or the explicit HDMI/Bluetooth profile. A game may separately mute itself on focus loss.
 
-A Pro Controller/Joy-Con stays paired with Switch. Optional forwarding creates a virtual PC device through the Controllers module. A single Minus is forwarded as game Back/Select after its 250 ms classification window; a quick double Minus toggles the stream overlay. Plus belongs to the game. Other modules may define different controls.
+A Pro Controller/Joy-Con stays paired with Switch. Optional forwarding creates a virtual PC device through the Controllers module. Press Minus to open the stream overlay; choose EXIT to return to IZ2S. Plus belongs to the game. Other modules may define different controls.
 
 ## Files, development and releases
 
@@ -156,11 +154,9 @@ A Pro Controller/Joy-Con stays paired with Switch. Optional forwarding creates a
 | `assets/` | Icon master and generation/design record |
 | `tools/module.cjs`, `install.sh` | Platform-aware check/package/install/release helpers |
 | `runtime/`, `data/` | Local compiled dependencies/preferences; ignored by Git |
-| `blitbun.izm` | Generated portable module package; ignored by Git |
 | `dist/` | Built source release archive and checksums; ignored by Git |
 
 ```sh
-node tools/build-switch.cjs "$IZ2S"
 node tools/module.cjs check --platform "$IZ2S"
 node tools/module.cjs pack --platform "$IZ2S"
 # Commit finished source changes before building a release:
@@ -207,3 +203,17 @@ Independently authored IZMYSH code is licensed under **GPL-2.0-or-later**.
 See [LICENSE](LICENSE), [COPYRIGHT](COPYRIGHT) and [license scope](LICENSE-SCOPE.md).
 Existing component licenses and prior MIT grants remain applicable; this is not
 a blanket relicensing of third-party material.
+
+## Console client
+
+The ready-to-install `.iza` client is included in this release. Use the installation steps above to install it through IZ2S or copy it to the SD card. The PC must remain connected while streaming.
+
+Press **Minus** to open the overlay. Choose **EXIT** to return to IZ2S. Updating the files does not replace code in a running application: close the client and reopen it after installation.
+
+## Streaming audio — 1.15.3
+
+Stereo capture now requests stereo output on HDMI as well as handheld outputs. PCM blocks start at 64 ms and adapt to sustained refill round-trip time, with at most two device buffers (320 ms maximum) and a bounded live source queue (200 ms maximum). This avoids a growing audio backlog. Single scheduling spikes do not increase buffering. Released-buffer ownership checks remain in place.
+
+Video ACKs already contain controller input; RPC input fallback begins only after 100 ms without an ACK. Audio routing is observed on startup or an actual route signal, without periodic native polling. Diagnostics now include missed refill deadlines even when an expired descriptor has not yet been reclaimed.
+
+Update the module in the App library, including the SD copy when installed there, and start a new launcher session to replace previously pinned host code. Running streams are not patched in place.

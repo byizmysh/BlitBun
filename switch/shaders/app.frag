@@ -9,4 +9,5 @@ layout(location=0) out vec4 outColor;
 #include "menu-draw.glsl"
 #include "pc-screen.glsl"
 #include "pc-screen-draw.glsl"
-void main(){outColor=vec4(streamDraw(gl_FragCoord.xy),1);}
+#include "standalone.glsl"
+void main(){outColor=vec4(mediaScreen(gl_FragCoord.xy),1);}

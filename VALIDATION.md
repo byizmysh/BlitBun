@@ -5,7 +5,7 @@ Prepared as a separate BlitBun repository with module ID `blitbun`. This record 
 - Source syntax and declared module/console assets checked against IZ2S API 1.
 - Installed into an isolated clean IZ2S release copy; module/package checks passed.
 - Accidental replacement without --replace refused. Intentional update retained private preferences and pinned snapshots; the previous module was backed up.
-- Generated IZM inventory checked for exclusion of runtime binaries, npm dependency trees and private profiles.
+- PC archive inventory checked for exclusion of runtime binaries, npm dependency trees and private profiles.
 - Branded console and application icons exported with real alpha. Existing codec, receiver ABI and controller gesture IDs are retained.
 - No physical-console FPS or network-throughput claim is made by the packaging checks. Encoding algorithms and stream ABI were not redesigned for this branding/extraction change.
 
